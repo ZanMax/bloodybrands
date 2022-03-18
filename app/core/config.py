@@ -1,0 +1,16 @@
+DEVELOPER_MODE = True
+PROJECT_NAME = "BLOODYBRANDS API"
+PROJECT_DESCRIPTION = "Detect company which support war"
+PROJECT_VERSION = "1.0"
+API_PATH = "/api"
+BACKEND_CORS_ORIGINS = ["*"]
+ALLOW_METHODS = ['*']
+ALLOW_HEADERS = ['*']
+DB_HOST = ""
+DB_PORT = ""
+DB_NAME = ""
+DB_USER = ""
+DB_PASS = ""
+SQLALCHEMY_DATABASE_URI = (
+    f"mysql://{DB_USER}:{DB_PASS}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
+)
