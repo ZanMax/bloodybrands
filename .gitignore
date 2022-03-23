@@ -285,3 +285,4 @@ fastapi.py
 migrations/
 alembic.ini
 init.sh
+app/core/configs/ServiceAccountToken.json
