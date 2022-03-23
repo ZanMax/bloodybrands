@@ -1,88 +1,105 @@
 <!doctype html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="description" content="Check brands before you buy their products.">
+    <meta name="author" content="BloodyBrands">
     <link rel="icon" href="assets/img/favicons/favicon.ico">
 
     <title>Bloody Brands</title>
 
     <link rel="canonical" href="index.html">
     <link href="dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="dist/css/main.css" rel="stylesheet">
     <link href="starter-template.css" rel="stylesheet">
-  </head>
+</head>
 
-  <body>
+<body>
 
-    <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-      <a class="navbar-brand" href="index.html#"><span style="color: red">B</span>loody <span style="color: red">B</span>rands</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+    <a class="navbar-brand" href="index.html#"><span style="color: red">B</span>loody <span style="color: red">B</span>rands</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
+            aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
-      </button>
+    </button>
 
-      <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+    <div class="collapse navbar-collapse" id="navbarsExampleDefault">
         <ul class="navbar-nav mr-auto">
-          <li class="nav-item active">
-            <a class="nav-link" href="index.html#">Home <span class="sr-only">(current)</span></a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="contacts.html#">Contacts</a>
-          </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="index.html#">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="contacts.html#">Contacts</a>
+            </li>
         </ul>
-      </div>
-    </nav>
+    </div>
+</nav>
 
-    <main role="main" class="container">
-        <div class="starter-template">
-          <h1>Brands that support the war</h1>
-          <p class="lead">Just type the company name to check it.</p>
-        </div>
+<main role="main" class="container">
+    <div class="starter-template">
+        <h1>Brands that support the war</h1>
+        <p class="lead">Just type the company name to check it.</p>
+    </div>
 
-        <div class="input-group mb-3">
-          <input type="text" class="form-control search-input" placeholder="Company name" aria-label="Company name" aria-describedby="basic-addon2">
-          <div class="input-group-append">
-            <button class="btn btn-outline-secondary search-button" type="button">Search</button>
-          </div>
+    <div class="container">
+        <div class="row align-items-center justify-content-center">
+            <div class="col-sm-5">
+                <div class="input-group">
+                    <input type="text" class="form-control search-input" placeholder="Company name"
+                           aria-label="Company name"
+                           aria-describedby="basic-addon2">
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-secondary search-button" type="button">Search</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-2 center-content">
+                OR
+            </div>
+            <div class="col-sm-5">
+                <form id="ImageCheckForm" method="post" enctype="multipart/form-data">
+                    <div class="custom-file">
+                        <input type="file" class="custom-file-input" id="img" name="img">
+                        <label class="custom-file-label" for="img">Choose image</label>
+                    </div>
+                </form>
+            </div>
         </div>
+    </div>
 
-        <div class="alert alert-success" style="display: none;">
-          This company <strong>does not support</strong> any wars.
-        </div>
-        
-        <div class="alert alert-warning" style="display: none;">
-          This company left funding <strong>under public pressure.</strong>
-        </div>
+    <div class="alert alert-primary">
+        We don't have information about this company. But we check it.
+    </div>
 
-        <div class="alert alert-danger" style="display: none;">
-          <strong>THIS COMPANY SUPPORT WAR!</strong>
-        </div>
-    </main>
+    <div class="alert alert-success">
+        This company <strong>does not support</strong> any wars.
+    </div>
 
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script>window.jQuery || document.write('<script src="assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
-    <script src="assets/js/vendor/popper.min.js"></script>
-    <script src="dist/js/bootstrap.min.js"></script>
-    <script type="text/javascript">
-      $('.search-button').on('click',function(){
-        $(".alert-warning").hide();
-        $(".alert-danger").hide();
-        $(".alert-success").hide();
-        var searchValue = $(".search-input").val();
-        fetch("http://127.0.0.1:8000/check/" + searchValue).then(respose => {
-          return respose.json();
-        }).then(resp => {
-          var checkStatus = resp.status;
-          if (checkStatus === "clear") {
-            $(".alert-success").show();
-          } else if (checkStatus === "pressure"){
-            $(".alert-warning").show();
-          } else if (checkStatus === "bloody"){
-            $(".alert-danger").show();
-          }
-        })
-      });
-    </script>
-  </body>
+    <div class="alert alert-warning">
+        This company left funding <strong>under public pressure.</strong>
+    </div>
+
+    <div class="alert alert-danger">
+        <strong>THIS COMPANY SUPPORT WAR!</strong>
+    </div>
+    <div class="statusTable">
+        <table class="table table-sm" id="table-status">
+            <thead>
+            <tr>
+                <th scope="col">Brand</th>
+                <th scope="col">Status</th>
+            </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+</main>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script src="dist/js/bootstrap.min.js"></script>
+<script src="dist/js/main.js"></script>
+</body>
 </html>

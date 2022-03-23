@@ -1,0 +1,21 @@
+.statusTable {
+    display: none;
+    padding-top: 10px;
+}
+
+.alert {
+    display: none;
+    margin-top: 10px;
+}
+
+.custom-file-label::after {
+    color: #6c757d;
+    border-color: #6c757d;
+    background-color: transparent;
+}
+
+.center-content {
+    text-align: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
