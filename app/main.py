@@ -55,6 +55,11 @@ async def root(request: Request):
     return templates.TemplateResponse("index.html", {"request": request})
 
 
+@app.get("/contacts", response_class=ORJSONResponse)
+async def root(request: Request):
+    return templates.TemplateResponse("contacts.html", {"request": request})
+
+
 @app.get("/check/{company_name}")
 async def check_company(*,
                         db: Session = Depends(get_db),
