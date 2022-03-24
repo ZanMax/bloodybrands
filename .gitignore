@@ -286,3 +286,4 @@ migrations/
 alembic.ini
 init.sh
 app/core/configs/ServiceAccountToken.json
+app/core/config.py
