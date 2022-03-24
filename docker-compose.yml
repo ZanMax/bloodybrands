@@ -22,5 +22,5 @@ services:
     links:
       - bb:bb
     environment:
-      - VIRTUAL_HOST=api.bloodybrands.com
+      - VIRTUAL_HOST=bloodybrands.com
       - VIRTUAL_PORT=80
