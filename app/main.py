@@ -1,8 +1,10 @@
 import os
 from typing import Generator
 
-from fastapi import FastAPI, Depends, File
-from fastapi.responses import RedirectResponse
+from fastapi import FastAPI, Depends, File, Request
+from fastapi.responses import ORJSONResponse
+from fastapi.staticfiles import StaticFiles
+from fastapi.templating import Jinja2Templates
 from google.cloud import vision
 from sqlalchemy.orm import Session
 from starlette.middleware.cors import CORSMiddleware
@@ -36,6 +38,9 @@ if app_config.BACKEND_CORS_ORIGINS:
 APP_ROOT = os.path.dirname(os.path.abspath(__file__))
 os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = os.path.join(APP_ROOT, 'core/configs', 'ServiceAccountToken.json')
 
+app.mount("/dist", StaticFiles(directory=os.path.join(APP_ROOT, "frontend", "dist")), name="dist")
+templates = Jinja2Templates(directory=os.path.join(APP_ROOT, "frontend"))
+
 
 def get_db() -> Generator:
     try:
@@ -45,9 +50,9 @@ def get_db() -> Generator:
         db.close()
 
 
-@app.get("/")
-async def root():
-    return {"API": "v1"}
+@app.get("/", response_class=ORJSONResponse)
+async def root(request: Request):
+    return templates.TemplateResponse("index.html", {"request": request})
 
 
 @app.get("/check/{company_name}")
@@ -80,11 +85,6 @@ def check_image(*,
         status = check_company_name(db, logo.description)
         result[logo.description] = status.get('status')
     return result
-
-
-@app.exception_handler(404)
-def not_found(request, exc):
-    return RedirectResponse("/")
 
 
 def check_company_name(db, company_name: str):

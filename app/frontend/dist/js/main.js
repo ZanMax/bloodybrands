@@ -62,10 +62,16 @@ function checkStatus(checkStatus) {
     }
 }
 
-function clearStatus(){
+function clearStatus() {
     $(".alert-warning").hide();
     $(".alert-danger").hide();
     $(".alert-success").hide();
     $(".alert-primary").hide();
     $(".statusTable").hide();
+}
+
+function blobToFile(theBlob, fileName) {
+    theBlob.lastModifiedDate = new Date();
+    theBlob.name = fileName;
+    return theBlob;
 }

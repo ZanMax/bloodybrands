@@ -19,3 +19,12 @@
     padding-top: 10px;
     padding-bottom: 10px;
 }
+
+body {
+    padding-top: 5rem;
+}
+
+.starter-template {
+    padding: 3rem 1.5rem;
+    text-align: center;
+}
