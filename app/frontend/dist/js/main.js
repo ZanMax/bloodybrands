@@ -1,4 +1,4 @@
-let baseURL = 'https://bloodybrands.com';
+let baseURL = 'https://www.bloodybrands.com';
 let checkNameURL = baseURL + '/check/';
 let checkImageURL = baseURL + '/check/image';
 
@@ -16,6 +16,7 @@ document.getElementById("img").onchange = function () {
     clearStatus();
     let form = document.getElementById('ImageCheckForm');
     let formData = new FormData(form);
+
     fetch(checkImageURL, {method: 'POST', body: formData})
         .then(response => response.json()).then(data => {
         let count = Object.keys(data).length;
