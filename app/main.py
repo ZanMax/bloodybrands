@@ -64,7 +64,8 @@ async def root(request: Request):
 async def check_company(*,
                         db: Session = Depends(get_db),
                         company_name: str):
-    result = check_company_name(db, company_name)
+    company_name = company_name.encode("utf-8")
+    result = check_company_name(db, company_name.decode("utf-8"))
     return result
 
 
