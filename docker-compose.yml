@@ -15,9 +15,9 @@ services:
     restart: unless-stopped
     image: nginx:latest
     ports:
-      - 80
+      - 80:80
     volumes:
-      - ./app/dist:/var/www/
+      - ./app/frontend/:/var/www/
       - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
     links:
       - bb:bb
