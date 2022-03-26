@@ -1,6 +1,6 @@
 import os
 from typing import Generator
-
+import base64
 from fastapi import FastAPI, Depends, File, Request
 from fastapi.responses import ORJSONResponse
 from fastapi.staticfiles import StaticFiles
@@ -60,12 +60,12 @@ async def root(request: Request):
     return templates.TemplateResponse("contacts.html", {"request": request})
 
 
-@app.get("/check/{company_name}")
+@app.get("/check/{enc_company_name}")
 async def check_company(*,
                         db: Session = Depends(get_db),
-                        company_name: str):
-    company_name = company_name.encode("utf-8")
-    result = check_company_name(db, company_name.decode("utf-8"))
+                        enc_company_name: str):
+    company_name = base64.b64decode(enc_company_name).decode('utf-8')
+    result = check_company_name(db, company_name)
     return result
 
 

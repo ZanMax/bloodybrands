@@ -5,7 +5,8 @@ let checkImageURL = baseURL + '/check/image';
 $('.search-button').on('click', function () {
     clearStatus();
     let searchValue = $(".search-input").val();
-    fetch(checkNameURL + searchValue).then(respose => {
+    let encodeSearch = utf8_to_b64(searchValue);
+    fetch(checkNameURL + encodeSearch).then(respose => {
         return respose.json();
     }).then(resp => {
         checkStatus(resp.status);
@@ -71,8 +72,6 @@ function clearStatus() {
     $(".statusTable").hide();
 }
 
-function blobToFile(theBlob, fileName) {
-    theBlob.lastModifiedDate = new Date();
-    theBlob.name = fileName;
-    return theBlob;
+function utf8_to_b64(str) {
+    return window.btoa(unescape(encodeURIComponent(str)));
 }
