@@ -12,5 +12,5 @@ DB_NAME = ""
 DB_USER = ""
 DB_PASS = ""
 SQLALCHEMY_DATABASE_URI = (
-    f"mysql://{DB_USER}:{DB_PASS}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
+    f"mysql://{DB_USER}:{DB_PASS}@{DB_HOST}:{DB_PORT}/{DB_NAME}?charset=utf8mb4"
 )

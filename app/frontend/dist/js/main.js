@@ -5,12 +5,14 @@ let checkImageURL = baseURL + '/check/image';
 $('.search-button').on('click', function () {
     clearStatus();
     let searchValue = $(".search-input").val();
-    let encodeSearch = utf8_to_b64(searchValue);
-    fetch(checkNameURL + encodeSearch).then(respose => {
-        return respose.json();
-    }).then(resp => {
-        checkStatus(resp.status);
-    })
+    if (searchValue.length > 0) {
+        let encodeSearch = utf8_to_b64(searchValue);
+        fetch(checkNameURL + encodeSearch).then(respose => {
+            return respose.json();
+        }).then(resp => {
+            checkStatus(resp.status);
+        })
+    }
 });
 
 document.getElementById("img").onchange = function () {
